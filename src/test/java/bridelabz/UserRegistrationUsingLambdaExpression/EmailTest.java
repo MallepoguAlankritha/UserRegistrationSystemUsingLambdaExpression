@@ -6,7 +6,6 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-
 @RunWith(Parameterized.class)
 public class EmailTest {
     private String email;
@@ -47,13 +46,13 @@ public class EmailTest {
     }
 
     /*
-   Created a Test method for validating all the sample emails in the List and handling the exception
-    */
+    Created a Test method for validating all the sample emails in the List and handling the exception
+     */
     @Test
     public void givenEmailIds_withExpectedResult_shouldPassAllTheTestCases() {
         try {
             UserRegistration userRegistration = new UserRegistration();
-            boolean result = userRegistration.validateEmail.validate(this.email);
+            boolean result = userRegistration.email(this.email);
             Assert.assertEquals(this.expectedResult, result);
         } catch (UserRegistrationException e) {
             System.out.println(e);
@@ -67,7 +66,7 @@ public class EmailTest {
     public void givenEmail1_null_ShouldThrowUserRegistrationException() {
         UserRegistration userRegistration = new UserRegistration();
         try {
-            userRegistration.validateEmail.validate(null);
+            userRegistration.email(null);
         } catch (UserRegistrationException e) {
             Assert.assertEquals(UserRegistrationException.type.NULL, e.type);
             System.out.println(e);
@@ -75,13 +74,13 @@ public class EmailTest {
     }
 
     /*
-    Created a Test method for validating empty emails in the List and handling the exception
-    */
+  Created a Test method for validating empty emails in the List and handling the exception
+   */
     @Test
     public void givenEmail1_EMPTY_ShouldThrowUserRegistrationException() {
         UserRegistration userRegistration = new UserRegistration();
         try {
-            userRegistration.validateEmail.validate("");
+            userRegistration.email("");
         } catch (UserRegistrationException e) {
             Assert.assertEquals(UserRegistrationException.type.EMPTY, e.type);
             System.out.println(e);
