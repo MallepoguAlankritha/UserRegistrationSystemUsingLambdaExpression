@@ -78,11 +78,14 @@ public class UserRegistration {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-    /*
-    Created a method to validate email
-    */
-    public boolean emailIdValidator(String emailId) {
-        String regex = "^[a-z0-9]{3,}+([_+-.][a-z0-9]{3,}+)*@[a-z0-9]+.[a-z]{2,3}+(.[a-z]{2,3}){0,1}$";
+ // Created a method to validate all the emails in the list
+    public boolean emailIdValidator(String emailId) throws UserRegistrationException {
+        if (emailId == null) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.NULL, "Input can't be Null");
+        } else if (emailId.length() == 0) {
+            throw new UserRegistrationException(UserRegistrationException.ExceptionType.EMPTY, "Invalid Input");
+        }
+        String regex = "^[a-z]{3,}+([_+-.][a-z0-9]{3,}+)*@[a-z0-9]+.[a-z]{2,3}+([.,]?[a-z]{2,3}){0,1}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(emailId);
         return matcher.matches();
